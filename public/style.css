@@ -1,0 +1,22 @@
+html {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+body {
+  background-image: linear-gradient(105deg, rgba(0,249,255,1) 39%, rgba(51,56,57,1) 96%);  
+}
+
+code {
+    background-color: whitesmoke;
+}
+
+section, header {
+    margin: 50px;
+}
+
+#convert {
+  background-color: darkmagenta;
+  color: white;
+}
