@@ -16,12 +16,12 @@ function ConvertHandler() {
 
     // Try to match number as fraction, decimal or whole number
     const numMatch = numString.match(
-      /^((?<NUMERATOR>[0-9]*(?:\.[0-9]*)?)\/(?<DENOMINATOR>[0-9]*(?:\.[0-9]*)?)|(?<DECIMAL>[0-9]*(?:\.[0-9]*)?))[^0-9\.\/]*$/,
+      /^((?<NUMERATOR>[0-9]*(?:\.[0-9]*)?)\/(?<DENOMINATOR>[0-9]*(?:\.[0-9]*)?)|(?<DECIMAL>[0-9]*(?:\.[0-9]*)?))[^0-9\.\/]*$/
     );
 
     if (!numMatch) {
       // No valid number detected - throw an error
-      throw new Error('invalid number');
+      throw new Error("invalid number");
     }
 
     const { NUMERATOR, DENOMINATOR, DECIMAL } = numMatch.groups;
@@ -32,7 +32,7 @@ function ConvertHandler() {
       const denom = Number(DENOMINATOR);
       if (denom === 0) {
         // Avoid dividing by 0 - number is invalid - throw an error
-        throw new Error('invalid number (divide by 0)');
+        throw new Error("invalid number (divide by 0)");
       }
 
       return num / denom;
@@ -60,22 +60,22 @@ function ConvertHandler() {
 
     if (!unitMatch) {
       // No valid unit detected - throw an error
-      throw new Error('invalid unit');
+      throw new Error("invalid unit");
     }
 
-    return unitMatch.groups.UNIT === 'l' ? 'L' : unitMatch.groups.UNIT;
+    return unitMatch.groups.UNIT === "l" ? "L" : unitMatch.groups.UNIT;
   };
 
   // Returns the abbreviated unit we will convert the given number to,
   // based on the initial unit given
   this.getReturnUnit = function (initUnit) {
     const unitToReturnUnit = {
-      L: 'gal',
-      gal: 'L',
-      kg: 'lbs',
-      lbs: 'kg',
-      km: 'mi',
-      mi: 'km',
+      L: "gal",
+      gal: "L",
+      kg: "lbs",
+      lbs: "kg",
+      km: "mi",
+      mi: "km",
     };
 
     return unitToReturnUnit[initUnit];
@@ -83,12 +83,12 @@ function ConvertHandler() {
 
   this.spellOutUnit = function (unit) {
     const unitToFullString = {
-      L: 'liters',
-      gal: 'gallons',
-      kg: 'kilograms',
-      lbs: 'pounds',
-      km: 'kilometers',
-      mi: 'miles',
+      L: "liters",
+      gal: "gallons",
+      kg: "kilograms",
+      lbs: "pounds",
+      km: "kilometers",
+      mi: "miles",
     };
 
     return unitToFullString[unit];
@@ -111,7 +111,7 @@ function ConvertHandler() {
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     const conversionString = `${initNum} ${this.spellOutUnit(
-      initUnit,
+      initUnit
     )} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
 
     return conversionString;
