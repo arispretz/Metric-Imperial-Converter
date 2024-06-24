@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
-const ConvertHandler = require('../controllers/convertHandler.js');
+const ConvertHandler = require("../controllers/convertHandler.js");
 
 module.exports = function (app) {
   let convertHandler = new ConvertHandler();
 
   // API route - GET request to /api/convert with input query param
-  app.get('/api/convert', (req, res) => {
+  app.get("/api/convert", (req, res) => {
     const { input } = req.query;
 
     // If no input, there are no units (number would default to 1)
     if (!input) {
-      return res.json('invalid unit');
+      return res.json("invalid unit");
     }
 
     // Otherwise try to convert:
@@ -28,7 +28,7 @@ module.exports = function (app) {
     } catch (err) {
       // Unit is not valid - either both number and unit or just unit are invalid
       if (errMessage) {
-        errMessage = 'invalid number and unit';
+        errMessage = "invalid number and unit";
       } else {
         errMessage = err.message;
       }
@@ -45,7 +45,7 @@ module.exports = function (app) {
       initNum,
       initUnit,
       returnNum,
-      returnUnit,
+      returnUnit
     );
 
     return res.json({
